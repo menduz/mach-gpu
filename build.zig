@@ -66,7 +66,7 @@ pub const Options = struct {
 
 pub fn link(b: *std.Build, step: *std.build.CompileStep, options: Options) !void {
     if (step.target.toTarget().cpu.arch != .wasm32) {
-        gpu_dawn.link(
+        try gpu_dawn.doLink(
             b.dependency("mach_gpu_dawn", .{
                 .target = step.target,
                 .optimize = step.optimize,
